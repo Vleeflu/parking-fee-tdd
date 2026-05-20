@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: parking-fee-tdd
+Version: 0.1.0
+Summary: Online Parking Fee System - TDD Hands-On Assignment
+Requires-Python: >=3.9
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
