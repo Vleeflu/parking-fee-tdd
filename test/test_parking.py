@@ -28,3 +28,6 @@ def test_unknown_day_type_invalid():
 
 def test_public_holiday_flat_rate():
     assert calculate_parking_fee("car", 3, "weekday", True) == 15
+
+def test_holiday_overrides_weekend():
+    assert calculate_parking_fee("truck", 5, "weekend", True) == 15
