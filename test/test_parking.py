@@ -26,6 +26,11 @@ def test_unknown_day_type_invalid():
     with pytest.raises(ValueError):
         calculate_parking_fee("car", 2, "monday", False)
 
+def test_public_holiday_flat_rate():
+    assert calculate_parking_fee("car", 3, "weekday", True) == 15
+
+def test_holiday_overrides_weekend():
+    assert calculate_parking_fee("truck", 5, "weekend", True) == 15
 def test_under_one_hour_is_free():
     assert calculate_parking_fee("car", 0.5, "weekday", False) == 0
 
@@ -34,3 +39,6 @@ def test_weekend_surcharge_car():
 
 def test_weekend_surcharge_truck():
     assert calculate_parking_fee("truck", 2, "weekend", False) == 13
+
+def test_holiday_does_not_override_free():
+    assert calculate_parking_fee("car", 0.5, "weekday", True) == 0

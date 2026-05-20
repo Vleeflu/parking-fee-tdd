@@ -1,5 +1,6 @@
 _BASE_RATES = {"motorcycle": 2, "car": 5, "truck": 10}
 _VALID_DAYS = {"weekday", "weekend"}
+HOLIDAY_FLAT_RATE = 15
 WEEKEND_SURCHARGE = 3
 FREE_THRESHOLD_HOURS = 1
 
@@ -12,7 +13,9 @@ def calculate_parking_fee(vehicle_type, parking_duration, day_type, is_public_ho
         raise ValueError("parking_duration must be in [0, 24]")
     if parking_duration < FREE_THRESHOLD_HOURS:
         return 0
-    
+    if is_public_holiday:
+        return HOLIDAY_FLAT_RATE
+
     fee = _BASE_RATES[vehicle_type]
     if day_type == "weekend":
         fee += WEEKEND_SURCHARGE
